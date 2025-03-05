@@ -14,19 +14,22 @@ public class Todo {
     private long id;
     private String mes;
     private boolean completed;
-    private LocalDateTime createAt;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     public Todo() {
+        createdAt = LocalDateTime.now();
     }
 
     public Todo(String mes, boolean completed) {
         this.mes = mes;
         this.completed = completed;
+        this.createdAt = LocalDateTime.now();
     }
 
     @PrePersist
-    protected void onCreate() {
-        createAt = LocalDateTime.now();
+    public void onCreate() {
+        System.out.println(LocalDateTime.now());
     }
 
     public long getId() {
@@ -53,11 +56,11 @@ public class Todo {
         this.completed = completed;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setCreateAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

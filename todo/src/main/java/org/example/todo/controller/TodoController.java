@@ -25,6 +25,7 @@ public class TodoController {
 
     @PostMapping
     public Todo addTodo(@RequestBody Todo todo) {
+        System.out.println(todo.getCreatedAt());
         return todoService.addTodo(todo);
     }
 

@@ -4,6 +4,7 @@ import org.example.todo.Entity.Todo;
 import org.example.todo.Repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class TodoService {
         todoRepository.deleteById(id);
     }
 
+    @Transactional
     public void clearCompleted() {
         todoRepository.deleteByCompleted(true);
     }
@@ -38,3 +40,4 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 }
+
